@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 
 @SpringBootApplication
@@ -36,7 +37,8 @@ public class OrderPlacingSpotApplication {
 		order2 = orderService.confirmOrder(0);
 		System.out.println(order2.getOrderStatus());
 		System.out.println(orderService.findOrderById(0).getOrderStatus());
-		order2 = orderService.pleaseFindOrderById(1).orElseThrow();
+		order2 = orderService.pleaseFindOrderById(0).orElseThrow(() -> new NoSuchElementException("brak elementu"));
+		order2 = orderService.pleaseFindOrderById(0).orElseThrow(NoSuchElementException::new);
 		System.out.println(order2.getOrderStatus());
 	}
 
