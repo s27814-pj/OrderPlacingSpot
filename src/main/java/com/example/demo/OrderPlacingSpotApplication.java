@@ -36,6 +36,8 @@ public class OrderPlacingSpotApplication {
 		order2 = orderService.confirmOrder(0);
 		System.out.println(order2.getOrderStatus());
 		System.out.println(orderService.findOrderById(0).getOrderStatus());
+		order2 = orderService.pleaseFindOrderById(1).orElseThrow();
+		System.out.println(order2.getOrderStatus());
 	}
 
 

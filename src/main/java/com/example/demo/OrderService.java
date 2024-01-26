@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -32,6 +33,12 @@ public class OrderService {
         } else{
             return order;
         }
+    }
+
+    public Optional<Order> pleaseFindOrderById (int id){
+        return orderStorage.getOrderList().stream()
+                .filter(order -> Integer.valueOf(order.getIdOrder()).equals(id))
+                .findFirst();
     }
     public OrderStatus checkStatus(int id){
         Order order = null;
