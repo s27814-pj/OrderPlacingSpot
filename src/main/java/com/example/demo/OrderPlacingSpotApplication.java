@@ -2,9 +2,8 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.NoSuchElementException;
+
+import java.util.*;
 
 
 @SpringBootApplication
@@ -40,6 +39,14 @@ public class OrderPlacingSpotApplication {
 		order2 = orderService.pleaseFindOrderById(0).orElseThrow(() -> new NoSuchElementException("brak elementu"));
 		order2 = orderService.pleaseFindOrderById(0).orElseThrow(NoSuchElementException::new);
 		System.out.println(order2.getOrderStatus());
+		Map<Component, Integer> tmpMap = new LinkedHashMap<>();
+		tmpMap.put(comp1, 5);
+		order2.doSomeMapThing(tmpMap);
+		for (Map.Entry<Component, Integer> entry : order2.getTmpMap().entrySet()){
+			System.out.println(entry.getKey().getName() + ":" + entry.getValue());
+		}
+
+
 	}
 
 

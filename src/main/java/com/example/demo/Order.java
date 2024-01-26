@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Order {
 
@@ -14,12 +15,24 @@ public class Order {
 
 
 
+    private Map<Component, Integer> tmpMap;
+
+
+
     public Order(List<Component> componentList, int idClient, String address) {
         this.componentList = componentList;
         this.idClient = idClient;
         this.address = address;
         this.idOrder=orderCounter++;
         this.orderStatus=OrderStatus.NOWE;
+    }
+
+    public void doSomeMapThing(Map<Component, Integer> tmpMap){
+        this.tmpMap = tmpMap;
+    }
+
+    public Map<Component, Integer> getTmpMap() {
+        return tmpMap;
     }
 
     public List<Component> getComponentList() {
