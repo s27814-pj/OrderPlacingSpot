@@ -15,7 +15,7 @@ public class OrderPlacingSpotApplication {
 	public OrderPlacingSpotApplication(OrderService orderService, OrderStorage orderStorage){
 		this.orderService=orderService;
 		this.orderStorage=orderStorage;
-		//execProcess();
+		execProcess();
 	}
 
 
@@ -24,7 +24,7 @@ public class OrderPlacingSpotApplication {
 		SpringApplication.run(OrderPlacingSpotApplication.class, args);}
 
 	public void execProcess(){
-		Component comp1 = new Component("nazwa",1);
+		Component comp1 = new Component("pomidor",1);
 		List<Component> compList = new ArrayList<Component>();
 		compList.add(comp1);
 		Order order1 = new Order(compList,1,"ulica 24");

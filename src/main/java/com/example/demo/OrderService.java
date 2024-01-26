@@ -2,6 +2,7 @@ package com.example.demo;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -39,7 +40,7 @@ public class OrderService {
     }
 
     public Order cancelOrder(int id){
-        if ((findOrderById(id).getOrderStatus()==OrderStatus.W_REALIZACJI)) {
+        if ((findOrderById(id).getOrderStatus()!=OrderStatus.W_REALIZACJI)) {
             findOrderById(id).setOrderStatus(OrderStatus.ANULOWANE); //nosuchelement info zwrotne
         }
     return findOrderById(id);
@@ -50,9 +51,16 @@ public class OrderService {
     }
 
     private Boolean validateList(List<Component> componentList){
+        List<String> listOfNames = new ArrayList<>();
+        listOfNames.add("pomidor");
+        listOfNames.add("niepomidor");
+        listOfNames.add("case");
         for (Component c : componentList){
-            if (c.getAmount()<=0) return false;
+            if (c.getAmount()<=0)
+                return false;
+            if (!listOfNames.contains(c.getName())) return false;
         }
+
         return true;
     }
 }
